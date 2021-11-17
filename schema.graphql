@@ -1,0 +1,72 @@
+type UserPool @entity {
+  id: ID!
+  user: Bytes! # address
+  pid: BigInt! # uint256
+  network: String!
+  shares: BigInt! # uint256
+  rewardDebt: BigInt! # uint256
+}
+
+type PoolEvent @entity{
+  # transaction state
+  id: ID!
+  index: BigInt!
+  value: BigInt! # uint256
+  gasUsed: BigInt! # uint256
+  gasPrice: BigInt! # uint256
+
+  # pool state
+  user: Bytes! # address
+  type: Int! # uint256
+  pid: BigInt! # uint256
+  network: String!
+  amount: BigInt! # uint256
+
+  # block state
+  timestamp: BigInt!
+  number: BigInt!
+}
+
+type Pool @entity{
+  id: ID!
+  pid: BigInt! # uint256
+
+  want: Bytes! # uint256
+  allocPoint: BigInt! # uint256
+  lastRewardBlock: BigInt! # uint256
+  accAUTOPerShare: BigInt! # uint256
+
+  network: String!
+  poolType: String!
+
+  address: Bytes! # address
+  wantLockedTotal: BigInt! # uint256
+  sharesTotal: BigInt! # uint256
+
+  apr: BigInt
+  apy: BigInt
+  tvl: BigInt
+  lpPriceInUsd: BigInt
+
+  upApr: BigInt
+#  upApy: BigInt
+
+  name: String!
+  # symbol: String!
+  # decimals: Int!
+  totalSupply: BigInt!
+  token0: Bytes # uint256
+  token1: Bytes # uint256
+
+  depositFee: BigDecimal!
+#  profitFee: BigDecimal!
+  withDrawFee: BigDecimal!
+}
+
+type UpToken @entity{
+  id: ID!
+  address: Bytes!
+  farmAddress: Bytes!
+  network: String!
+  priceInUsd: BigInt!
+}

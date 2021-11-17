@@ -1,0 +1,73 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GlobalStatistic
+    network: bsc
+    source:
+      address: "0xA84277d17b21F28c5C98bbd2179e68f72af5f0cC"
+      abi: UpFarm
+      startBlock: 13190000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - UserPool
+        - Pool
+        - UserPool
+        - PoolEvent
+        - UpdateRecord
+      abis:
+        - name: UpFarm
+          file: ./abis/UpFarm.json
+        - name: Strategy
+          file: ./abis/Strategy.json
+        - name: StrategyMars
+          file: ./abis/StrategyMars.json
+        - name: StrategyPCS
+          file: ./abis/StrategyPCS.json
+        - name: IMarsSwapFactory
+          file: ./abis/IMarsSwapFactory.json
+        - name: IMarsSwapPair
+          file: ./abis/IMarsSwapPair.json
+        - name: MarsSwapERC20
+          file: ./abis/MarsSwapERC20.json
+        - name: ILiquidityMiningMaster
+          file: ./abis/ILiquidityMiningMaster.json
+        - name: MasterChef
+          file: ./abis/MasterChef.json
+      blockHandlers:
+        - handler: handleBlock
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: UserStatistic
+    network: bsc
+    source:
+      address: "0xA84277d17b21F28c5C98bbd2179e68f72af5f0cC"
+      abi: UpFarm
+      startBlock: 13190000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - UserPool
+        - PoolEvent
+      abis:
+        - name: UpFarm
+          file: ./abis/UpFarm.json
+      blockHandlers:
+        - handler: handleBlock
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/mapping.ts

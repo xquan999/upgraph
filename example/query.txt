@@ -1,0 +1,42 @@
+
+{
+    pools(first:10){
+      id
+      pid
+      allocPoint
+      lastRewardBlock
+      accAUTOPerShare
+      sharesTotal
+      wantLockedTotal
+
+      address
+      wantLockedTotal
+      sharesTotal
+
+      tvl
+      apr
+      upApr
+      lpPriceInUsd
+
+      name
+      symbol
+      decimals
+      totalSupply
+      network
+      poolType
+
+      depositFee
+      profitFee
+      withDrawFee
+    }
+
+
+  upTokens(first:10){
+    id
+    network
+    priceInUsd
+    address
+    farmAddress
+  }
+}
+
